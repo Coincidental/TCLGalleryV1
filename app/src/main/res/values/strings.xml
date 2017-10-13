@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Gallery</string>
+
+    <string name="year_view">Year View</string>
+    <string name="month_view">Month View</string>
+    <string name="day_view">Day View</string>
+    <string name="other_view">其他视图</string>
+    <string name="delete_photo">Delete Photo ?</string>
+    <string name="delete_photos">Delete Photos ?</string>
+    <string name="btn_ok">DELETE</string>
+    <string name="btn_cancel">CANCEL</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="camera">Camera</string>
+
+
+    <!-- add -->
+    <string name="tab_moments">Moments</string>
+    <string name="tab_albums">Albums</string>
+    <string name="tab_create">Create</string>
+
+    <string name="toolbar_select_albums">Select albums</string>
+    <string name="toolbar_sort_albums">Sort albums</string>
+    <string name="toolbar_album_settings">Settings</string>
+    <string name="toolbar_album_add">Add Album</string>
+    <string name="toolbar_album_close">Close SelectView</string>
+    <string name="toolbar_album_archive">Archive Album</string>
+    <string name="toolbar_album_delete">Album Delete</string>
+
+    <string name="album_all_images">All Images</string>
+    <string name="album_all_videos">All Videos</string>
+    <string name="album_all_images_videos">All Images/Videos</string>
+
+    <string name="menu_title_moment">Moment</string>
+    <string name="menu_title_album">Album</string>
+    <string name="menu_title_create">Create</string>
+
+    <string name="denied_required_permission">Permissions denied. You can change them in Settings &gt; Apps.</string>
+
+    <!-- bottomNavigationBar -->
+    <string name="icon">icon</string>
+    <!-- bottomNavigationBar -->
+
+    <string-array name="default_album">
+        <item>/storage/emulated/0/DCIM/Camera</item>
+        <item>/storage/emulated/0/DCIM/Selfies</item>
+        <item>/storage/emulated/0/Movies</item>
+        <item>/storage/emulated/0/Pictures/Screenshots</item>
+        <item>/storage/emulated/0/DCIM/MyCreation</item>
+    </string-array>
+
+    <string name="default_album_camera">Camera</string>
+    <string name="default_album_favourites">Favourites</string>
+    <string name="default_album_self">Selfies</string>
+    <string name="default_album_videos">Videos</string>
+    <string name="default_album_screenshots">Screenshots</string>
+    <string name="default_album_my_creation">MyCreation</string>
+    <string name="default_album_cinema_graph">CinemaGraph</string>
+    <string name="default_album_private">Private</string>
+
+</resources>
