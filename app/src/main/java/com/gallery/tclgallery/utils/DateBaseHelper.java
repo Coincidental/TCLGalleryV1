@@ -3,6 +3,7 @@ package com.gallery.tclgallery.utils;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by liddo on 2017/9/30.
@@ -11,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DateBaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
-    private static final String GALLERY_TCL_DB_NAME = "gallery_tcl";
+    private static final String GALLERY_TCL_DB_NAME = "gallery_tcl.db";
 
     public static final String LOCAL_MEDIA_DB_TABLE = "Local_media";
     public static final String LOCAL_MEDIA_DB_ID = "local_id";
@@ -43,6 +44,7 @@ public class DateBaseHelper extends SQLiteOpenHelper {
     public static final String ALBUM_TAG_DB_LOCAL_PATH = "local_path";
     public static final String ALBUM_TAG_DB_VISIBLE = "visible";
     public static final String ALBUM_TAG_DB_ITEM_COUNT = "item_count";
+    public static final String ALBUM_TAG_DB_DEFAULT = "default_album";
     public static final String ALBUM_TAG_DB_LAST_UPDATE_TIME = "last_update_time";
 
     public static final String LOCAL_MEDIA_ALBUM_TAG_TABLE = "local_media_album_tag";
@@ -107,21 +109,22 @@ public class DateBaseHelper extends SQLiteOpenHelper {
         sbAlbumTag.append(ALBUM_TAG_DB_LOCAL_PATH).append(" text,");
         sbAlbumTag.append(ALBUM_TAG_DB_VISIBLE).append(" integer not null,");
         sbAlbumTag.append(ALBUM_TAG_DB_ITEM_COUNT).append(" integer not null,");
+        sbAlbumTag.append(ALBUM_TAG_DB_DEFAULT).append(" integer not null,");
         sbAlbumTag.append(ALBUM_TAG_DB_LAST_UPDATE_TIME).append(" integer not null");
         sbAlbumTag.append(")");
 
         db.execSQL(sbAlbumTag.toString());
 
         StringBuilder sbLocalMediaAlbumTag = new StringBuilder();
-        sbAlbumTag.append("create table if not exists ");
-        sbAlbumTag.append(LOCAL_MEDIA_ALBUM_TAG_TABLE);
-        sbAlbumTag.append("(");
-        sbAlbumTag.append(LOCAL_MEDIA_ALBUM_TAG_ID).append(" integer primary key not null autoincrement,");
-        sbAlbumTag.append(LOCAL_MEDIA_ALBUM_TAG_LOCAL_ID).append(" integer not null,");
-        sbAlbumTag.append(LOCAL_MEDIA_ALBUM_TAG_ALBUM_TAG_ID).append(" integer not null");
-        sbAlbumTag.append(")");
+        sbLocalMediaAlbumTag.append("create table if not exists ");
+        sbLocalMediaAlbumTag.append(LOCAL_MEDIA_ALBUM_TAG_TABLE);
+        sbLocalMediaAlbumTag.append("(");
+        sbLocalMediaAlbumTag.append(LOCAL_MEDIA_ALBUM_TAG_ID).append(" integer primary key autoincrement,");
+        sbLocalMediaAlbumTag.append(LOCAL_MEDIA_ALBUM_TAG_LOCAL_ID).append(" integer not null,");
+        sbLocalMediaAlbumTag.append(LOCAL_MEDIA_ALBUM_TAG_ALBUM_TAG_ID).append(" integer not null");
+        sbLocalMediaAlbumTag.append(")");
 
-        //db.execSQL(sbLocalMediaAlbumTag.toString());
+        db.execSQL(sbLocalMediaAlbumTag.toString());
 
     }
 

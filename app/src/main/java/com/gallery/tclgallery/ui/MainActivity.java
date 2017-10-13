@@ -7,7 +7,9 @@ import android.view.View;
 
 import com.gallery.tclgallery.R;
 import com.gallery.tclgallery.interfaces.LocalMediaDao;
+import com.gallery.tclgallery.model.AlbumDaoImpl;
 import com.gallery.tclgallery.model.LocalMediaDaoImpl;
+import com.gallery.tclgallery.model.LocalMedia_AlbumTagDaoImpl;
 
 public class MainActivity extends Activity {
     private Context mContext;
@@ -20,7 +22,7 @@ public class MainActivity extends Activity {
     }
 
     public void scanLocalMedia(View view) {
-        LocalMediaDao localMediaDao = new LocalMediaDaoImpl(mContext);
+        LocalMediaDao localMediaDao = new LocalMediaDaoImpl(mContext, new AlbumDaoImpl(mContext),new LocalMedia_AlbumTagDaoImpl(mContext));
         localMediaDao.initLocalMedia();
     }
 }

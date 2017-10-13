@@ -13,7 +13,9 @@ import com.gallery.tclgallery.R;
 import com.gallery.tclgallery.bean.AlbumTag;
 import com.gallery.tclgallery.bean.LocalMediaBean;
 import com.gallery.tclgallery.bean.LocalMedia_AlbumTag;
+import com.gallery.tclgallery.interfaces.AlbumDao;
 import com.gallery.tclgallery.interfaces.LocalMediaDao;
+import com.gallery.tclgallery.interfaces.LocalMedia_AlbumTagDao;
 import com.gallery.tclgallery.utils.DateBaseHelper;
 import com.gallery.tclgallery.utils.LocalMediaScanTask;
 
@@ -31,6 +33,8 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
     private ArrayList<LocalMediaBean> localMedia;
     private ArrayList<AlbumTag> albumTags;
     private ArrayList<LocalMedia_AlbumTag> localMedia_TagList;
+    private AlbumDao albumDao;
+    private LocalMedia_AlbumTagDao localMedia_albumTagDao;
 
     private static final String[] LOCAL_MEDIA = {
             DateBaseHelper.LOCAL_MEDIA_DB_ID,
@@ -53,8 +57,10 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
             DateBaseHelper.LOCAL_MEDIA_DB_VISIBLE
     };
 
-    public LocalMediaDaoImpl(Context context) {
+    public LocalMediaDaoImpl(Context context,AlbumDao albumDao, LocalMedia_AlbumTagDao localMedia_albumTagDao) {
         mContext = context;
+        this.albumDao = albumDao;
+        this.localMedia_albumTagDao = localMedia_albumTagDao;
     }
 
     @Override
@@ -133,14 +139,23 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
                         Log.i("dongdong","    "+albumMedias.getName());
                     }
                 }
-                // 计算最后修改时间
+                // 计算最后修改时间和相册显示
                 for (AlbumTag albumTag:albumTags) {
                     ArrayList<LocalMediaBean> medias = albumTag.getMediaBeans();
                     albumTag.setLast_update_time(getLastUpdateTime(medias));
+                    if (albumTag.getTag_id()>0) {
+                        albumTag.setVisible(1);
+                    } else {
+                        albumTag.setVisible(0);
+                    }
+                    albumTag.setItem_count(medias.size());
+                    albumDao.insertAlbumTag(albumTag);
                 }
+
                 // 关系表
                 for (LocalMedia_AlbumTag media_albumTag:localMedia_TagList) {
                     Log.i("dongdongli", media_albumTag.getId()+"  "+media_albumTag.getLocal_id()+"   "+media_albumTag.getAlbum_id());
+                    localMedia_albumTagDao.insertLocalMediaAlbumTag(media_albumTag);
                 }
             }
         });
@@ -173,6 +188,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultCamera.setDisplay_name(mContext.getString(R.string.default_album_camera));
         albumDefaultCamera.setLocal_path(default_album_local_path[0]);
         albumDefaultCamera.setMediaBeans(new ArrayList<LocalMediaBean>());
+        albumDefaultCamera.setDefalult(1);
         albumTags.add(albumDefaultCamera);
         album_local_path_list.add(default_album_local_path[0]);
         //Favourites
@@ -183,6 +199,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultFavourite.setDisplay_name(mContext.getString(R.string.default_album_favourites));
         albumDefaultFavourite.setMediaBeans(new ArrayList<LocalMediaBean>());
         albumDefaultFavourite.setLocal_path("");
+        albumDefaultFavourite.setDefalult(1);
         albumTags.add(albumDefaultFavourite);
         //Selfies
         AlbumTag albumDefaultSelfies = new AlbumTag();
@@ -192,6 +209,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultSelfies.setDisplay_name(mContext.getString(R.string.default_album_self));
         albumDefaultSelfies.setLocal_path(default_album_local_path[1]);
         albumDefaultSelfies.setMediaBeans(new ArrayList<LocalMediaBean>());
+        albumDefaultSelfies.setDefalult(1);
         albumTags.add(albumDefaultSelfies);
         album_local_path_list.add(default_album_local_path[1]);
         //Videos
@@ -202,6 +220,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultVideos.setDisplay_name(mContext.getString(R.string.default_album_videos));
         albumDefaultVideos.setLocal_path(default_album_local_path[2]);
         albumDefaultVideos.setMediaBeans(new ArrayList<LocalMediaBean>());
+        albumDefaultVideos.setDefalult(1);
         albumTags.add(albumDefaultVideos);
         album_local_path_list.add(default_album_local_path[2]);
         //ScreenShots
@@ -212,6 +231,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultScreenshots.setDisplay_name(mContext.getString(R.string.default_album_screenshots));
         albumDefaultScreenshots.setLocal_path(default_album_local_path[3]);
         albumDefaultScreenshots.setMediaBeans(new ArrayList<LocalMediaBean>());
+        albumDefaultScreenshots.setDefalult(1);
         albumTags.add(albumDefaultScreenshots);
         album_local_path_list.add(default_album_local_path[3]);
         //MyCreation
@@ -222,6 +242,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultMyCreation.setDisplay_name(mContext.getString(R.string.default_album_my_creation));
         albumDefaultMyCreation.setLocal_path(default_album_local_path[4]);
         albumDefaultMyCreation.setMediaBeans(new ArrayList<LocalMediaBean>());
+        albumDefaultMyCreation.setDefalult(1);
         albumTags.add(albumDefaultMyCreation);
         album_local_path_list.add(default_album_local_path[4]);
         //Cinema Graph
@@ -232,6 +253,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultCinemaGraph.setDisplay_name(mContext.getString(R.string.default_album_cinema_graph));
         albumDefaultCinemaGraph.setMediaBeans(new ArrayList<LocalMediaBean>());
         albumDefaultCinemaGraph.setLocal_path("");
+        albumDefaultCinemaGraph.setDefalult(1);
         albumTags.add(albumDefaultCinemaGraph);
         //Private
         AlbumTag albumDefaultPrivate = new AlbumTag();
@@ -241,6 +263,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultPrivate.setDisplay_name(mContext.getString(R.string.default_album_private));
         albumDefaultPrivate.setMediaBeans(new ArrayList<LocalMediaBean>());
         albumDefaultPrivate.setLocal_path("");
+        albumDefaultPrivate.setDefalult(1);
         albumTags.add(albumDefaultPrivate);
 
         //localMedia_TagList
@@ -264,7 +287,6 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
                 localMedias.add(localMediaBean);
                 existAlbum.setMediaBeans(localMedias);
                 int item_count = existAlbum.getItem_count();
-                existAlbum.setItem_count(item_count++);
                 albumTags.add(existAlbum);
                 LocalMedia_AlbumTag localMedia_albumTag = new LocalMedia_AlbumTag();
                 localMedia_albumTag.setId(++localMedia_AlbumTag_id);
@@ -282,7 +304,6 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
                 ArrayList<LocalMediaBean> localMediaList = new ArrayList<>();
                 localMediaList.add(localMediaBean);
                 newAlbum.setMediaBeans(localMediaList);
-                newAlbum.setItem_count(1);
                 album_local_path_list.add(local_path);
                 albumTags.add(newAlbum);
                 LocalMedia_AlbumTag localMedia_albumTag = new LocalMedia_AlbumTag();

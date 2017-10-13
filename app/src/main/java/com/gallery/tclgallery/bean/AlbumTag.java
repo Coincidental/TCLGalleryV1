@@ -40,6 +40,10 @@ public class AlbumTag implements Parcelable {
      */
     private int item_count;
     /**
+     * default album
+     */
+    private int defalult;
+    /**
      * last update time
      */
     private int last_update_time;
@@ -110,6 +114,14 @@ public class AlbumTag implements Parcelable {
 
     public void setItem_count(int item_count) {
         this.item_count = item_count;
+    }
+
+    public int getDefalult() {
+        return defalult;
+    }
+
+    public void setDefalult(int defalult) {
+        this.defalult = defalult;
     }
 
     public int getLast_update_time() {
