@@ -46,24 +46,4 @@ public interface LocalMediaDao {
      */
     LocalMediaBean getLocalMediaBeanByLocalId(int local_id);
 
-    /**
-     * get local media by type
-     * @param local_id
-     * @return
-     */
-    LocalMediaBean getLocalMediaBeanByType(int local_id);
-
-    /**
-     * get local media by album tag id
-     * @param tag_id
-     * @return
-     */
-    List<LocalMediaBean> getLocalMediaBeanByAlbumTagId(int tag_id);
-
-    /**
-     * get local media by album name
-     * @param album_name
-     * @return
-     */
-    List<LocalMediaBean> getLocalMediaBeanByAlbumName(String album_name);
 }

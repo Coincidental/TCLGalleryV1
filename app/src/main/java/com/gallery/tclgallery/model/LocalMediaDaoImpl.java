@@ -380,12 +380,47 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
 
     @Override
     public void deleteLocalMedia(LocalMediaBean localMediaBean) {
-
+        DateBaseHelper dbHelper = new DateBaseHelper(mContext);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        int result = sqLiteDatabase.delete(DateBaseHelper.LOCAL_MEDIA_DB_TABLE,"local_id = ?", new String[]{localMediaBean.getLocal_id()+""});
+        if (result>0) {
+            Log.i(TAG,"delete local media succeed");
+        }
+        sqLiteDatabase.close();
+        dbHelper.close();
     }
 
     @Override
     public void updateLocalMedia(LocalMediaBean localMediaBean) {
+        DateBaseHelper dateBaseHelper = new DateBaseHelper(mContext);
+        SQLiteDatabase sqLiteDatabase = dateBaseHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("name",localMediaBean.getName());
+        cv.put("bucket_name",localMediaBean.getBucketName());
+        cv.put("type",localMediaBean.getType());
+        cv.put("mime_type",localMediaBean.getMime_type());
+        cv.put("create_at",localMediaBean.getCreated_at());
+        cv.put("generated_at",localMediaBean.getGenerated_at());
+        cv.put("local_path",localMediaBean.getLocal_path());
+        cv.put("thumbnail_path",localMediaBean.getThumbPath());
+        cv.put("size",localMediaBean.getSize());
+        cv.put("taken_at",localMediaBean.getTaken_at());
+        cv.put("latitude",localMediaBean.getLatitude());
+        cv.put("longitude",localMediaBean.getLongitude());
+        cv.put("location",localMediaBean.getLocation());
+        cv.put("duration",localMediaBean.getDuration());
+        cv.put("secret",localMediaBean.getSecret());
+        cv.put("width",localMediaBean.getWidth());
+        cv.put("height",localMediaBean.getHeight());
+        cv.put("orientation",localMediaBean.getOrientation());
+        cv.put("visible",localMediaBean.getVisible());
 
+        int result = sqLiteDatabase.update(DateBaseHelper.LOCAL_MEDIA_DB_TABLE,cv,"local_id = ?",new String[]{localMediaBean.getLocal_id()+""});
+        if (result>0) {
+            Log.i(TAG,"update local media succeed");
+        }
+        sqLiteDatabase.close();
+        dateBaseHelper.close();
     }
 
     @Override
@@ -393,18 +428,5 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         return null;
     }
 
-    @Override
-    public LocalMediaBean getLocalMediaBeanByType(int local_id) {
-        return null;
-    }
 
-    @Override
-    public List<LocalMediaBean> getLocalMediaBeanByAlbumTagId(int tag_id) {
-        return null;
-    }
-
-    @Override
-    public List<LocalMediaBean> getLocalMediaBeanByAlbumName(String album_name) {
-        return null;
-    }
 }
