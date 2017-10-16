@@ -6,6 +6,7 @@
     tools:context="com.gallery.tclgallery.ui.MainActivity">
 
     <Button
+        android:id="@+id/init_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="scan local media"

@@ -13,6 +13,10 @@ public interface LocalMedia_AlbumTagDao {
 
     void deleteLocalMediaAlbumTag(LocalMedia_AlbumTag media_albumTag);
 
+    void deleteLocalMediaAlbumTagByLocalId(int local_id);
+
+    void deleteLocalMediaAlbumTagByTagId(int tag_id);
+
     void updateLocalMediaAlbumTag(LocalMedia_AlbumTag media_albumTag);
 
     ArrayList<LocalMedia_AlbumTag> queryAllLocalMediaAlbumTag();

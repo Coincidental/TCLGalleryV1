@@ -188,7 +188,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultCamera.setDisplay_name(mContext.getString(R.string.default_album_camera));
         albumDefaultCamera.setLocal_path(default_album_local_path[0]);
         albumDefaultCamera.setMediaBeans(new ArrayList<LocalMediaBean>());
-        albumDefaultCamera.setDefalult(1);
+        albumDefaultCamera.setDefault_album(1);
         albumTags.add(albumDefaultCamera);
         album_local_path_list.add(default_album_local_path[0]);
         //Favourites
@@ -199,7 +199,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultFavourite.setDisplay_name(mContext.getString(R.string.default_album_favourites));
         albumDefaultFavourite.setMediaBeans(new ArrayList<LocalMediaBean>());
         albumDefaultFavourite.setLocal_path("");
-        albumDefaultFavourite.setDefalult(1);
+        albumDefaultFavourite.setDefault_album(1);
         albumTags.add(albumDefaultFavourite);
         //Selfies
         AlbumTag albumDefaultSelfies = new AlbumTag();
@@ -209,7 +209,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultSelfies.setDisplay_name(mContext.getString(R.string.default_album_self));
         albumDefaultSelfies.setLocal_path(default_album_local_path[1]);
         albumDefaultSelfies.setMediaBeans(new ArrayList<LocalMediaBean>());
-        albumDefaultSelfies.setDefalult(1);
+        albumDefaultSelfies.setDefault_album(1);
         albumTags.add(albumDefaultSelfies);
         album_local_path_list.add(default_album_local_path[1]);
         //Videos
@@ -220,7 +220,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultVideos.setDisplay_name(mContext.getString(R.string.default_album_videos));
         albumDefaultVideos.setLocal_path(default_album_local_path[2]);
         albumDefaultVideos.setMediaBeans(new ArrayList<LocalMediaBean>());
-        albumDefaultVideos.setDefalult(1);
+        albumDefaultVideos.setDefault_album(1);
         albumTags.add(albumDefaultVideos);
         album_local_path_list.add(default_album_local_path[2]);
         //ScreenShots
@@ -231,7 +231,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultScreenshots.setDisplay_name(mContext.getString(R.string.default_album_screenshots));
         albumDefaultScreenshots.setLocal_path(default_album_local_path[3]);
         albumDefaultScreenshots.setMediaBeans(new ArrayList<LocalMediaBean>());
-        albumDefaultScreenshots.setDefalult(1);
+        albumDefaultScreenshots.setDefault_album(1);
         albumTags.add(albumDefaultScreenshots);
         album_local_path_list.add(default_album_local_path[3]);
         //MyCreation
@@ -242,7 +242,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultMyCreation.setDisplay_name(mContext.getString(R.string.default_album_my_creation));
         albumDefaultMyCreation.setLocal_path(default_album_local_path[4]);
         albumDefaultMyCreation.setMediaBeans(new ArrayList<LocalMediaBean>());
-        albumDefaultMyCreation.setDefalult(1);
+        albumDefaultMyCreation.setDefault_album(1);
         albumTags.add(albumDefaultMyCreation);
         album_local_path_list.add(default_album_local_path[4]);
         //Cinema Graph
@@ -253,7 +253,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultCinemaGraph.setDisplay_name(mContext.getString(R.string.default_album_cinema_graph));
         albumDefaultCinemaGraph.setMediaBeans(new ArrayList<LocalMediaBean>());
         albumDefaultCinemaGraph.setLocal_path("");
-        albumDefaultCinemaGraph.setDefalult(1);
+        albumDefaultCinemaGraph.setDefault_album(1);
         albumTags.add(albumDefaultCinemaGraph);
         //Private
         AlbumTag albumDefaultPrivate = new AlbumTag();
@@ -263,7 +263,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         albumDefaultPrivate.setDisplay_name(mContext.getString(R.string.default_album_private));
         albumDefaultPrivate.setMediaBeans(new ArrayList<LocalMediaBean>());
         albumDefaultPrivate.setLocal_path("");
-        albumDefaultPrivate.setDefalult(1);
+        albumDefaultPrivate.setDefault_album(1);
         albumTags.add(albumDefaultPrivate);
 
         //localMedia_TagList

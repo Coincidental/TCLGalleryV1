@@ -36,6 +36,11 @@ public class DateBaseHelper extends SQLiteOpenHelper {
     public static final String LOCAL_MEDIA_DB_ORIENTATION = "orientation";
     public static final String LOCAL_MEDIA_DB_VISIBLE = "visible";
 
+    public static final String[] LOCAL_MEDIA_COLUMNS = {LOCAL_MEDIA_DB_ID, LOCAL_MEDIA_DB_NAME, LOCAL_MEDIA_DB_BUCKET_ID, LOCAL_MEDIA_DB_TYPE,
+            LOCAL_MEDIA_DB_MIME_TYPE, LOCAL_MEDIA_DB_CREATE_AT, LOCAL_MEDIA_DB_LOCAL_PATH, LOCAL_MEDIA_DB_THUMBNAIL_PATH, LOCAL_MEDIA_DB_SIZE,
+            LOCAL_MEDIA_DB_TAKEN_AT, LOCAL_MEDIA_DB_LATITUDE, LOCAL_MEDIA_DB_LONGITUDE, LOCAL_MEDIA_DB_LOCATION, LOCAL_MEDIA_DB_DURATION,
+            LOCAL_MEDIA_DB_SECRET, LOCAL_MEDIA_DB_WIDTH, LOCAL_MEDIA_DB_HEIGHT, LOCAL_MEDIA_DB_ORIENTATION, LOCAL_MEDIA_DB_VISIBLE};
+
     public static final String ALBUM_TAG_DB_TABLE = "Album_tag";
     public static final String ALBUM_TAG_DB_TAG_ID = "tag_id";
     public static final String ALBUM_TAG_DB_TYPE = "type";
@@ -47,10 +52,15 @@ public class DateBaseHelper extends SQLiteOpenHelper {
     public static final String ALBUM_TAG_DB_DEFAULT = "default_album";
     public static final String ALBUM_TAG_DB_LAST_UPDATE_TIME = "last_update_time";
 
+    public static final String[] ALBUM_TAG_COLUMNS = {ALBUM_TAG_DB_TAG_ID, ALBUM_TAG_DB_TYPE, ALBUM_TAG_DB_NAME, ALBUM_TAG_DB_DISPLAY_NAME,
+            ALBUM_TAG_DB_LOCAL_PATH, ALBUM_TAG_DB_VISIBLE, ALBUM_TAG_DB_ITEM_COUNT, ALBUM_TAG_DB_DEFAULT, ALBUM_TAG_DB_LAST_UPDATE_TIME };
+
     public static final String LOCAL_MEDIA_ALBUM_TAG_TABLE = "local_media_album_tag";
     public static final String LOCAL_MEDIA_ALBUM_TAG_ID = "id";
     public static final String LOCAL_MEDIA_ALBUM_TAG_LOCAL_ID = "local_id";
     public static final String LOCAL_MEDIA_ALBUM_TAG_ALBUM_TAG_ID = "tag_id";
+
+    public static final String[] LOCAL_MEDIA_ALBUM_TAG_COLUMN = {LOCAL_MEDIA_ALBUM_TAG_ID, LOCAL_MEDIA_ALBUM_TAG_LOCAL_ID, LOCAL_MEDIA_ALBUM_TAG_ALBUM_TAG_ID};
 
     public DateBaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

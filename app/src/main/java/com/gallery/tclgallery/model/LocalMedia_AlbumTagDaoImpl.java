@@ -41,7 +41,38 @@ public class LocalMedia_AlbumTagDaoImpl implements LocalMedia_AlbumTagDao{
 
     @Override
     public void deleteLocalMediaAlbumTag(LocalMedia_AlbumTag media_albumTag) {
+        DateBaseHelper dbHelper = new DateBaseHelper(mContext);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        int result = sqLiteDatabase.delete(DateBaseHelper.LOCAL_MEDIA_ALBUM_TAG_TABLE,"local_id = ? and tag_id = ?",new String[]{media_albumTag.getLocal_id()+"",media_albumTag.getAlbum_id()+""});
+        if (result>0) {
+            Log.i(TAG,"delete localMedia_AlbumTag succeed");
+        }
+        sqLiteDatabase.close();
+        dbHelper.close();
+    }
 
+    @Override
+    public void deleteLocalMediaAlbumTagByLocalId(int local_id) {
+        DateBaseHelper dbHelper = new DateBaseHelper(mContext);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        int result = sqLiteDatabase.delete(DateBaseHelper.LOCAL_MEDIA_ALBUM_TAG_TABLE,"local_id = ?",new String[]{"" + local_id});
+        if (result>0) {
+            Log.i(TAG,"delete localMedia_AlbumTag succeed");
+        }
+        sqLiteDatabase.close();
+        dbHelper.close();
+    }
+
+    @Override
+    public void deleteLocalMediaAlbumTagByTagId(int tag_id) {
+        DateBaseHelper dbHelper = new DateBaseHelper(mContext);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        int result = sqLiteDatabase.delete(DateBaseHelper.LOCAL_MEDIA_ALBUM_TAG_TABLE,"tag_id = ?",new String[]{"" + tag_id});
+        if (result>0) {
+            Log.i(TAG,"delete localMedia_AlbumTag succeed");
+        }
+        sqLiteDatabase.close();
+        dbHelper.close();
     }
 
     @Override

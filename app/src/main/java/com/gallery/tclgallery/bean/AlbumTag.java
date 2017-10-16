@@ -42,7 +42,7 @@ public class AlbumTag implements Parcelable {
     /**
      * default album
      */
-    private int defalult;
+    private int default_album;
     /**
      * last update time
      */
@@ -116,12 +116,12 @@ public class AlbumTag implements Parcelable {
         this.item_count = item_count;
     }
 
-    public int getDefalult() {
-        return defalult;
+    public int getDefault_album() {
+        return default_album;
     }
 
-    public void setDefalult(int defalult) {
-        this.defalult = defalult;
+    public void setDefault_album(int default_album) {
+        this.default_album = default_album;
     }
 
     public int getLast_update_time() {
@@ -159,6 +159,7 @@ public class AlbumTag implements Parcelable {
         display_name = in.readString();
         visible = in.readInt();
         item_count = in.readInt();
+        default_album = in.readInt();
         last_update_time = in.readInt();
         mediaBeans = in.createTypedArrayList(LocalMediaBean.CREATOR);
         isChecked = in.readByte() != 0;
@@ -177,6 +178,7 @@ public class AlbumTag implements Parcelable {
         dest.writeString(display_name);
         dest.writeInt(visible);
         dest.writeInt(item_count);
+        dest.writeInt(default_album);
         dest.writeInt(last_update_time);
         dest.writeTypedList(mediaBeans);
         dest.writeByte((byte)(isChecked ? 1:0));
