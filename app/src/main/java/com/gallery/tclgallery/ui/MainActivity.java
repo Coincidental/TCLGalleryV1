@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
     }
 
     public void scanLocalMedia(View view) {
-        LocalMediaDao localMediaDao = new LocalMediaDaoImpl(mContext, new AlbumDaoImpl(mContext),new LocalMedia_AlbumTagDaoImpl(mContext));
+        LocalMediaDao localMediaDao = new LocalMediaDaoImpl(mContext);
         localMediaDao.initLocalMedia();
     }
 }
