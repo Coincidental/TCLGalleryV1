@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="fastscroll__style" format="reference" />
+    <declare-styleable name="fastscroll__fastScroller">
+        <attr name="fastscroll__bubbleColor" format="color" />
+        <attr name="fastscroll__handleColor" format="color" />
+        <attr name="fastscroll__bubbleTextAppearance" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomNavigationBar">
+        <attr format="dimension" name="bnbElevation"/><attr format="color" name="bnbActiveColor"/><attr format="color" name="bnbInactiveColor"/><attr format="color" name="bnbBackgroundColor"/><attr format="integer" name="bnbAnimationDuration"/><attr format="enum" name="bnbMode">
+            <enum name="mode_default" value="0"/>
+            <enum name="mode_fixed" value="1"/>
+            <enum name="mode_shifting" value="2"/>
+            <enum name="mode_fixed_no_title" value="3"/>
+            <enum name="mode_shifting_no_title" value="4"/>
+        </attr>
+        <attr format="enum" name="bnbBackgroundStyle">
+            <enum name="background_style_default" value="0"/>
+            <enum name="background_style_static" value="1"/>
+            <enum name="background_style_ripple" value="2"/>
+        </attr>
+        <attr format="boolean" name="bnbAutoHideEnabled"/>
+    </declare-styleable>
+
+</resources>

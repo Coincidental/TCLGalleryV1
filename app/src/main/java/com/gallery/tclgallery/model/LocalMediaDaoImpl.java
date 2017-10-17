@@ -57,10 +57,10 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
             DateBaseHelper.LOCAL_MEDIA_DB_VISIBLE
     };
 
-    public LocalMediaDaoImpl(Context context,AlbumDao albumDao, LocalMedia_AlbumTagDao localMedia_albumTagDao) {
+    public LocalMediaDaoImpl(Context context) {
         mContext = context;
-        this.albumDao = albumDao;
-        this.localMedia_albumTagDao = localMedia_albumTagDao;
+        albumDao = new AlbumDaoImpl(mContext);
+        localMedia_albumTagDao = new LocalMedia_AlbumTagDaoImpl(mContext);
     }
 
     @Override

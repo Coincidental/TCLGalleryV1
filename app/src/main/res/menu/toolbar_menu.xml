@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_archive_album"
+        android:title="@string/toolbar_album_archive"
+        android:icon="@drawable/ic_archive_24px"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/menu_delete_album"
+        android:title="@string/toolbar_album_delete"
+        android:icon="@drawable/ic_delete_24px"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/menu_add_album"
+        android:title="@string/toolbar_album_add"
+        android:icon="@drawable/ic_add_24px"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/menu_select_album"
+        android:title="@string/toolbar_select_albums"
+        android:icon="@drawable/ic_add_24px"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_sort_album"
+        android:title="@string/toolbar_sort_albums"
+        android:icon="@drawable/ic_add_24px"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_setting_album"
+        android:title="@string/toolbar_album_settings"
+        android:icon="@drawable/ic_add_24px"
+        app:showAsAction="never"
+        />
+
+</menu>

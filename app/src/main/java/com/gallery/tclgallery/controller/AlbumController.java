@@ -8,6 +8,9 @@ import com.gallery.tclgallery.bean.LocalMedia_AlbumTag;
 import com.gallery.tclgallery.interfaces.AlbumDao;
 import com.gallery.tclgallery.interfaces.LocalMediaDao;
 import com.gallery.tclgallery.interfaces.LocalMedia_AlbumTagDao;
+import com.gallery.tclgallery.model.AlbumDaoImpl;
+import com.gallery.tclgallery.model.LocalMediaDaoImpl;
+import com.gallery.tclgallery.model.LocalMedia_AlbumTagDaoImpl;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -23,11 +26,11 @@ public class AlbumController {
     private LocalMedia_AlbumTagDao media_albumTagDao;
     private LocalMediaDao localMediaDao;
 
-    public AlbumController(Context context, AlbumDao albumDao, LocalMedia_AlbumTagDao media_albumTagDao,LocalMediaDao localMediaDao) {
+    public AlbumController(Context context) {
         mContext = context;
-        this.albumDao = albumDao;
-        this.media_albumTagDao = media_albumTagDao;
-        this.localMediaDao = localMediaDao;
+        albumDao = new AlbumDaoImpl(mContext);
+        media_albumTagDao = new LocalMedia_AlbumTagDaoImpl(mContext);
+        localMediaDao = new LocalMediaDaoImpl(mContext);
     }
 
     /**

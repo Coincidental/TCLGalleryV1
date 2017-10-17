@@ -5,4 +5,22 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!--  toolbar-->
+    <style name="OverflowMenuStyle" parent="@style/ThemeOverlay.AppCompat">
+        <item name="overlapAnchor">false</item>
+    </style>
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!--  toolbar-->
+
+    <style name="BadgeText" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">@dimen/badge_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginTop">@dimen/badge_top_margin</item>
+        <item name="android:paddingRight">@dimen/badge_width_padding</item>
+        <item name="android:paddingLeft">@dimen/badge_width_padding</item>
+        <item name="android:paddingBottom">@dimen/badge_height_padding</item>
+        <item name="android:paddingTop">@dimen/badge_height_padding</item>
+        <item name="android:visibility">gone</item>
+    </style>
 </resources>
