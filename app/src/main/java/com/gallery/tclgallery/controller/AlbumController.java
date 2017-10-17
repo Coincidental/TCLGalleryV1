@@ -6,8 +6,10 @@ import com.gallery.tclgallery.bean.AlbumTag;
 import com.gallery.tclgallery.bean.LocalMediaBean;
 import com.gallery.tclgallery.bean.LocalMedia_AlbumTag;
 import com.gallery.tclgallery.interfaces.AlbumDao;
+import com.gallery.tclgallery.interfaces.LocalMediaDao;
 import com.gallery.tclgallery.interfaces.LocalMedia_AlbumTagDao;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -19,11 +21,13 @@ public class AlbumController {
     private Context mContext;
     private AlbumDao albumDao;
     private LocalMedia_AlbumTagDao media_albumTagDao;
+    private LocalMediaDao localMediaDao;
 
-    public AlbumController(Context context, AlbumDao albumDao, LocalMedia_AlbumTagDao media_albumTagDao) {
+    public AlbumController(Context context, AlbumDao albumDao, LocalMedia_AlbumTagDao media_albumTagDao,LocalMediaDao localMediaDao) {
         mContext = context;
         this.albumDao = albumDao;
         this.media_albumTagDao = media_albumTagDao;
+        this.localMediaDao = localMediaDao;
     }
 
     /**
@@ -142,4 +146,30 @@ public class AlbumController {
     public void deleteAlbum(AlbumTag album) {
 
     }
+
+    /**
+     * 通过相册查询所含多媒体文件
+     * @param album
+     * @return
+     */
+    public ArrayList<LocalMediaBean> getLocalMediaByAlbum(AlbumTag album) {
+        ArrayList<LocalMedia_AlbumTag> media_tagList = new ArrayList<>();
+        media_tagList = media_albumTagDao.queryMediaAlbumTagByTag_id(album.getTag_id());
+        ArrayList<LocalMediaBean> medias = new ArrayList<>();
+        for (LocalMedia_AlbumTag media_tag:media_tagList) {
+            LocalMediaBean media = localMediaDao.getLocalMediaBeanByLocalId(media_tag.getLocal_id());
+            medias.add(media);
+        }
+        return medias;
+    }
+
+    /**
+     * 获取所有的相册
+     * @return
+     */
+    public ArrayList<AlbumTag> getAlbum(){
+        ArrayList<AlbumTag> albums = new ArrayList<>();
+        albums = albumDao.queryAllAlbumTag();
+        return albums;
+     }
 }

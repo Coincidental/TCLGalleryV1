@@ -21,7 +21,7 @@ public interface LocalMedia_AlbumTagDao {
 
     ArrayList<LocalMedia_AlbumTag> queryAllLocalMediaAlbumTag();
 
-    LocalMedia_AlbumTag queryMediaAlbumTagBylocal_id(int local_id);
+    ArrayList<LocalMedia_AlbumTag> queryMediaAlbumTagBylocal_id(int local_id);
 
     ArrayList<LocalMedia_AlbumTag> queryMediaAlbumTagByTag_id(int tag_id);
 }

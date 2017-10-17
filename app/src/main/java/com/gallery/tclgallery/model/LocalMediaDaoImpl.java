@@ -69,7 +69,7 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
         DateBaseHelper dbHelper = new DateBaseHelper(mContext);
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         String sql = "select * from Local_media";
-        Cursor cursor = sqLiteDatabase.rawQuery(sql,null);
+        Cursor cursor = sqLiteDatabase.query(DateBaseHelper.LOCAL_MEDIA_DB_TABLE,LOCAL_MEDIA,null,null,null,null,null);
         if (cursor != null) {
             while(cursor.moveToNext()){
                 int local_id = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[0]));
@@ -425,8 +425,54 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
 
     @Override
     public LocalMediaBean getLocalMediaBeanByLocalId(int local_id) {
-        return null;
-    }
+        DateBaseHelper dbHelper = new DateBaseHelper(mContext);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        LocalMediaBean media = new LocalMediaBean();
+        Cursor cursor = sqLiteDatabase.query(DateBaseHelper.LOCAL_MEDIA_DB_TABLE,LOCAL_MEDIA,"local_id = ?",new String[]{local_id+""},null,null,null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                String type = cursor.getString(cursor.getColumnIndex(LOCAL_MEDIA[1]));
+                String mime_type = cursor.getString(cursor.getColumnIndex(LOCAL_MEDIA[2]));
+                int created_at = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[3]));
+                int generated_at = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[4]));
+                String local_path = cursor.getString(cursor.getColumnIndex(LOCAL_MEDIA[5]));
+                String thumbnail_path = cursor.getString(cursor.getColumnIndex(LOCAL_MEDIA[6]));
+                int size = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[7]));
+                int taken_at = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[8]));
+                float latitude = cursor.getFloat(cursor.getColumnIndex(LOCAL_MEDIA[9]));
+                float longitude = cursor.getFloat(cursor.getColumnIndex(LOCAL_MEDIA[10]));
+                String location = cursor.getString(cursor.getColumnIndex(LOCAL_MEDIA[11]));
+                int duration = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[12]));
+                int secret  = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[13]));
+                int width = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[14]));
+                int height = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[15]));
+                int orientation = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[16]));
+                int visible = cursor.getInt(cursor.getColumnIndex(LOCAL_MEDIA[17]));
 
+                media.setType(type);
+                media.setMime_type(mime_type);
+                media.setCreated_at(created_at);
+                media.setGenerated_at(generated_at);
+                media.setLocal_path(local_path);
+                media.setThumbPath(thumbnail_path);
+                media.setSize(size);
+                media.setTaken_at(taken_at);
+                media.setLatitude(latitude);
+                media.setLongitude(longitude);
+                media.setLocation(location);
+                media.setDuration(duration);
+                media.setSecret(secret);
+                media.setWidth(width);
+                media.setHeight(height);
+                media.setOrientation(orientation);
+                media.setVisible(visible);
+
+            }
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        dbHelper.close();
+        return media;
+    }
 
 }
