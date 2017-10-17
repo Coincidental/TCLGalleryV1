@@ -76,9 +76,12 @@ public class AlbumFolderAdapter extends BaseAdapter{
         } else {
             holder.selectImage.setVisibility(View.GONE);
         }
-        Glide.with(mContext)
-                .load("file://" + arrayList.get(i).getMediaBeans().get(0).getThumbPath())
-                .into(holder.image);
+        if (arrayList.get(i).getItem_count()>0) {
+            Glide.with(mContext)
+                    .load("file://" + arrayList.get(i).getMediaBeans().get(0).getLocal_path())
+                    .thumbnail(0.1f)
+                    .into(holder.image);
+        }
         return view;
     }
 

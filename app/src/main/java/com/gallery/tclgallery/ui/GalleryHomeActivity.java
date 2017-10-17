@@ -44,6 +44,8 @@ public class GalleryHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         toolbar = (Toolbar) findViewById(R.id.gallery_toolbar);
+        mContext = getApplicationContext();
+        albumController = new AlbumController(mContext);
         // 初始化Toolbar
         initToolBar();
         setSupportActionBar(toolbar);
@@ -51,8 +53,6 @@ public class GalleryHomeActivity extends AppCompatActivity {
         initAlbumGridv();
         // 初始化相册数据
         loadAlbumFolderDate();
-        mContext = getApplicationContext();
-        albumController = new AlbumController(mContext);
     }
 
     private void initToolBar(){
@@ -130,7 +130,7 @@ public class GalleryHomeActivity extends AppCompatActivity {
         visibleAlbums = new ArrayList<>();
         invisibleAlbums = new ArrayList<>();
         // 所有相册
-        albumFolders = albumController.getAlbum();
+        albumFolders.addAll(albumController.getAlbum());
         for(AlbumTag album:albumFolders) {
             ArrayList<LocalMediaBean> localMediaBeen = albumController.getLocalMediaByAlbum(album);
             album.setMediaBeans(localMediaBeen);

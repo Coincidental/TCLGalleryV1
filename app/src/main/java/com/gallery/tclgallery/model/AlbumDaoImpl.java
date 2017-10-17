@@ -97,7 +97,7 @@ public class AlbumDaoImpl implements AlbumDao {
         ArrayList<AlbumTag> albumList = new ArrayList<>();
         DateBaseHelper dbHelper = new DateBaseHelper(mContext);
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.query(DateBaseHelper.ALBUM_TAG_DB_TABLE,DateBaseHelper.ALBUM_TAG_COLUMNS,null,null,null,null,DateBaseHelper.ALBUM_TAG_DB_TAG_ID);
+        Cursor cursor = sqLiteDatabase.query(DateBaseHelper.ALBUM_TAG_DB_TABLE,DateBaseHelper.ALBUM_TAG_COLUMNS,null,null,null,null,null);
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 int tag_id = cursor.getInt(cursor.getColumnIndex(DateBaseHelper.ALBUM_TAG_COLUMNS[0]));
