@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.whf.gallery.R;
+import com.gallery.tclgallery.R;
+
 
 /**
  * Created by liddo on 2017/9/27.
