@@ -27,6 +27,11 @@
     <string name="toolbar_album_archive">Archive Album</string>
     <string name="toolbar_album_delete">Album Delete</string>
 
+    <string name="album_toolbar_select_item">Select items</string>
+    <string name="album_toolbar_slide_show">Slideshow</string>
+    <string name="album_toolbar_rename_album">Rename Album</string>
+    <string name="album_toolbar_delete_album">Delete Album</string>
+
     <string name="album_all_images">All Images</string>
     <string name="album_all_videos">All Videos</string>
     <string name="album_all_images_videos">All Images/Videos</string>

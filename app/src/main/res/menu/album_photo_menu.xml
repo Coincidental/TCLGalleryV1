@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/album_menu_select_items"
+        android:title="@string/album_toolbar_select_item"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/album_menu_slide_show"
+        android:title="@string/album_toolbar_slide_show"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/album_menu_rename_album"
+        android:title="@string/album_toolbar_rename_album"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/album_menu_delete_album"
+        android:title="@string/album_toolbar_delete_album"
+        app:showAsAction="never"
+        />
+
+</menu>

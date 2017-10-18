@@ -24,6 +24,7 @@
         <activity android:name=".ui.GalleryHomeActivity" />
         <activity android:name=".ui.GalleryCreateActivity" />
         <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.AlbumPhotoActivity" />
     </application>
 
 </manifest>

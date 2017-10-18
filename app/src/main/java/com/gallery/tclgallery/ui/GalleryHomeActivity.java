@@ -1,6 +1,7 @@
 package com.gallery.tclgallery.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -110,6 +111,10 @@ public class GalleryHomeActivity extends AppCompatActivity {
                         toolbar.setTitle(folderCheckedCount+"");
                         invalidateOptionsMenu();
                     }
+                } else {
+                    Intent intent = new Intent(GalleryHomeActivity.this,AlbumPhotoActivity.class);
+                    intent.putExtra("albumTag",showAlbums.get(i));
+                    startActivity(intent);
                 }
             }
         });

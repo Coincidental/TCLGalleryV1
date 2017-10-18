@@ -47,12 +47,12 @@ public class GalleryBaseActivity extends AppCompatActivity implements BottomNavi
         localActivityManager = new LocalActivityManager(this, true);
         localActivityManager.dispatchCreate(savedInstanceState);
         mContext = getApplicationContext();
+        initBottomNavBar();
     }
 
     @Override
     protected void onResume() {
         if (checkAndRequestForGallery() == 0) {
-            initBottomNavBar();
             initViewPager();
         } else {
             // no read permission
@@ -194,7 +194,6 @@ public class GalleryBaseActivity extends AppCompatActivity implements BottomNavi
             case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED) {
                     if (checkAndRequestForGallery() == 0) {
-                        initBottomNavBar();
                         initViewPager();
                     } else {
                         ActivityCompat.requestPermissions(GalleryBaseActivity.this,
