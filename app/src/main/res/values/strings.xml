@@ -57,5 +57,6 @@
     <string name="default_album_my_creation">MyCreation</string>
     <string name="default_album_cinema_graph">CinemaGraph</string>
     <string name="default_album_private">Private</string>
+    <string name="default_album_others">Others</string>
 
 </resources>

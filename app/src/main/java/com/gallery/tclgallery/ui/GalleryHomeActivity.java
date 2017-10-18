@@ -32,6 +32,7 @@ public class GalleryHomeActivity extends AppCompatActivity {
     private ArrayList<AlbumTag> albumFolders;
     private ArrayList<AlbumTag> invisibleAlbums;
     private ArrayList<AlbumTag> visibleAlbums;
+    private ArrayList<AlbumTag> showAlbums;
     private AlbumFolderAdapter albumFolderAdapter;
     private boolean folderNoChecked = true;
     private int folderCheckedCount = 0;
@@ -68,8 +69,8 @@ public class GalleryHomeActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (!albumFolderAdapter.isAlbumSelected()) {
-                    if (albumFolders.size() != 0) {
-                        albumFolders.get(i).setChecked(true);
+                    if (showAlbums.size() != 0) {
+                        showAlbums.get(i).setChecked(true);
                         albumFolderAdapter.setAlbumSelected(true);
                         folderCheckedCount = 1;
                         toolbar.setTitle(folderCheckedCount + "");
@@ -78,7 +79,7 @@ public class GalleryHomeActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 albumFolderAdapter.setAlbumSelected(false);
-                                for (AlbumTag album:albumFolders) {
+                                for (AlbumTag album:showAlbums) {
                                     album.setChecked(false);
                                 }
                                 albumFolderAdapter.notifyDataSetChanged();
@@ -98,11 +99,10 @@ public class GalleryHomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (albumFolderAdapter.isAlbumSelected()){
-                    boolean isSelected = albumFolders.get(i).isChecked();
-                    albumFolders.get(i).setChecked(!isSelected);
+                    boolean isSelected = showAlbums.get(i).isChecked();
+                    showAlbums.get(i).setChecked(!isSelected);
                     albumFolderAdapter.notifyDataSetChanged();
                     checkAlbumFoldersNoChecked();
-                    Log.i("dongdong","folderNoChecked = " + folderNoChecked + ";folderCheckedCount = "+ folderCheckedCount);
                     if (folderNoChecked){
                         toolbar.setTitle("");
                         invalidateOptionsMenu();
@@ -117,7 +117,7 @@ public class GalleryHomeActivity extends AppCompatActivity {
 
     private void checkAlbumFoldersNoChecked () {
         folderCheckedCount = 0;
-        for (AlbumTag album : albumFolders){
+        for (AlbumTag album : showAlbums){
             if (album.isChecked()) {
                 folderCheckedCount++;
             }
@@ -129,6 +129,7 @@ public class GalleryHomeActivity extends AppCompatActivity {
         albumFolders = new ArrayList<>();
         visibleAlbums = new ArrayList<>();
         invisibleAlbums = new ArrayList<>();
+        showAlbums = new ArrayList<>();
         // 所有相册
         albumFolders.addAll(albumController.getAlbum());
         for(AlbumTag album:albumFolders) {
@@ -142,8 +143,26 @@ public class GalleryHomeActivity extends AppCompatActivity {
                 invisibleAlbums.add(album);
             }
         }
-        albumFolderAdapter.setArrayList(visibleAlbums);
+        showAlbums.addAll(showAlbumList(visibleAlbums,invisibleAlbums));
+        albumFolderAdapter.setArrayList(showAlbums);
         albumFolderAdapter.notifyDataSetChanged();
+    }
+
+    private ArrayList<AlbumTag> showAlbumList(ArrayList<AlbumTag> visibleAlbums,ArrayList<AlbumTag> invisibleAlbums){
+        ArrayList<AlbumTag> showAlbums = new ArrayList<>();
+        for (AlbumTag folder: visibleAlbums) {
+            if (folder.isChecked()) {
+                Log.i("dongdong",folder.getName() + "is selected");
+                albumFolderAdapter.setAlbumSelected(true);
+            }
+        }
+        showAlbums.addAll(visibleAlbums);
+        AlbumTag othersAlbum = new AlbumTag();
+        othersAlbum.setName(mContext.getString(R.string.default_album_others));
+        othersAlbum.setDisplay_name(mContext.getString(R.string.default_album_others));
+        othersAlbum.setItem_count(invisibleAlbums.size());
+        showAlbums.add(othersAlbum);
+        return showAlbums;
     }
 
     @Override
@@ -200,7 +219,7 @@ public class GalleryHomeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         albumFolderAdapter.setAlbumSelected(false);
-                        for (AlbumTag album:albumFolders) {
+                        for (AlbumTag album:showAlbums) {
                             album.setChecked(false);
                         }
                         albumFolderAdapter.notifyDataSetChanged();
@@ -227,7 +246,7 @@ public class GalleryHomeActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (albumFolderAdapter.isAlbumSelected()) {
             albumFolderAdapter.setAlbumSelected(false);
-            for (AlbumTag album:albumFolders) {
+            for (AlbumTag album:showAlbums) {
                 album.setChecked(false);
             }
             albumFolderAdapter.notifyDataSetChanged();

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.gallery.tclgallery.R;
 import com.gallery.tclgallery.bean.AlbumTag;
 
@@ -24,6 +25,9 @@ public class AlbumFolderAdapter extends BaseAdapter{
 
     private final String TAG = "AlbumFolderAdapter";
     private ArrayList<AlbumTag> arrayList;
+    private ArrayList<AlbumTag> visibleList;
+    private ArrayList<AlbumTag> invisibleList;
+    private AlbumTag othersAlbum;
     private LayoutInflater inflater;
     private Context mContext;
     private boolean isAlbumSelected = false;
@@ -31,7 +35,10 @@ public class AlbumFolderAdapter extends BaseAdapter{
 
     public AlbumFolderAdapter(Context context) {
         inflater = LayoutInflater.from(context);
+        visibleList = new ArrayList<>();
+        invisibleList = new ArrayList<>();
         arrayList = new ArrayList<>();
+        othersAlbum = new AlbumTag();
         mContext = context;
     }
 
@@ -42,7 +49,7 @@ public class AlbumFolderAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int i) {
-        return arrayList.get(i);
+            return arrayList.get(i);
     }
 
     @Override
@@ -64,6 +71,7 @@ public class AlbumFolderAdapter extends BaseAdapter{
         } else {
             holder = (Holder) view.getTag();
         }
+
         holder.name.setText(arrayList.get(i).getName());
         holder.count.setText(""+arrayList.get(i).getItem_count());
         if (isAlbumSelected){
@@ -76,12 +84,13 @@ public class AlbumFolderAdapter extends BaseAdapter{
         } else {
             holder.selectImage.setVisibility(View.GONE);
         }
-        if (arrayList.get(i).getItem_count()>0) {
+        if (arrayList.get(i).getItem_count() > 0 && i<getCount()-1) {
             Glide.with(mContext)
                     .load("file://" + arrayList.get(i).getMediaBeans().get(0).getLocal_path())
-                    .skipMemoryCache(true)
                     .thumbnail(0.1f)
                     .into(holder.image);
+        } else {
+            holder.image.setImageResource(R.drawable.album_default_loading_pic);
         }
         return view;
     }
@@ -93,8 +102,8 @@ public class AlbumFolderAdapter extends BaseAdapter{
         TextView count;
     }
 
-    public void setArrayList(ArrayList<AlbumTag> list) {
-        arrayList = list;
+    public void setArrayList(ArrayList<AlbumTag> arrayList) {
+        this.arrayList.addAll(arrayList);
         for (AlbumTag folder: arrayList) {
             if (folder.isChecked()) {
                 Log.i("dongdong",folder.getName() + "is selected");
