@@ -84,7 +84,7 @@ public class AlbumFolderAdapter extends BaseAdapter{
         } else {
             holder.selectImage.setVisibility(View.GONE);
         }
-        if (arrayList.get(i).getItem_count() > 0 && i<getCount()-1) {
+        if (arrayList.get(i).getItem_count() > 0 && i<getCount()-1 && arrayList.get(i).getMediaBeans().size()>0) {
             Glide.with(mContext)
                     .load("file://" + arrayList.get(i).getMediaBeans().get(0).getLocal_path())
                     .thumbnail(0.1f)

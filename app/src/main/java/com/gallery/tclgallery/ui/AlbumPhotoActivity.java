@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.gallery.tclgallery.R;
@@ -31,6 +32,7 @@ public class AlbumPhotoActivity extends AppCompatActivity {
     private GridView gridView;
     private AlbumPhotoAdapter photoAdapter;
     private Context mContext;
+    private int photoCheckedCount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +62,37 @@ public class AlbumPhotoActivity extends AppCompatActivity {
         photoAdapter = new AlbumPhotoAdapter(mContext);
         photoAdapter.setLocalMediaBeen(localMedia);
         gridView.setAdapter(photoAdapter);
+
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (!photoAdapter.isAlbumSelected()) {
+                    if (localMedia.size() != 0) {
+                        localMedia.get(i).setChecked(true);
+                        photoAdapter.setAlbumSelected(true);
+                        photoCheckedCount = 1;
+                        albumPhotoToolBar.setTitle(photoCheckedCount + "");
+                        albumPhotoToolBar.setNavigationIcon(R.drawable.ic_close_24px);
+                        albumPhotoToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                photoAdapter.setAlbumSelected(false);
+                                for (LocalMediaBean mediaBean:localMedia) {
+                                    mediaBean.setChecked(false);
+                                }
+                                photoAdapter.notifyDataSetChanged();
+                                albumPhotoToolBar.setTitle(album.getName());
+                                albumPhotoToolBar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+                                invalidateOptionsMenu();
+                            }
+                        });
+                        invalidateOptionsMenu();
+                        photoAdapter.notifyDataSetChanged();
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @Override

@@ -169,7 +169,7 @@ public class GalleryBaseActivity extends AppCompatActivity implements BottomNavi
         intent.putExtra("view_id",2);
         views.add(getView("Albums", intent));
 
-        intent.setClass(this, GalleryCreateActivity.class);
+        intent.setClass(this, MainActivity.class);
         intent.putExtra("view_id",3);
         views.add(getView("Create", intent));
 
