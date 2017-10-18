@@ -79,6 +79,7 @@ public class AlbumFolderAdapter extends BaseAdapter{
         if (arrayList.get(i).getItem_count()>0) {
             Glide.with(mContext)
                     .load("file://" + arrayList.get(i).getMediaBeans().get(0).getLocal_path())
+                    .skipMemoryCache(true)
                     .thumbnail(0.1f)
                     .into(holder.image);
         }
