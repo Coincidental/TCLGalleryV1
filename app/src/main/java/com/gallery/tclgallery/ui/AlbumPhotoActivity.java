@@ -53,7 +53,6 @@ public class AlbumPhotoActivity extends AppCompatActivity {
         gridView = (GridView)findViewById(R.id.album_photo_gridView);
         initToolBar();
         initGridView();
-
     }
 
     private void initToolBar(){

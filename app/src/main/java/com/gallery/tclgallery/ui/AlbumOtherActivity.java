@@ -173,9 +173,6 @@ public class AlbumOtherActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                return true;
             case R.id.menu_unarchive_album:
                 // 移除other相册
                 return true;
