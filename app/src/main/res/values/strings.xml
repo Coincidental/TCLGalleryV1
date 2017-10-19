@@ -31,6 +31,19 @@
     <string name="album_toolbar_slide_show">Slideshow</string>
     <string name="album_toolbar_rename_album">Rename Album</string>
     <string name="album_toolbar_delete_album">Delete Album</string>
+    <string name="album_toolbar_share_photo">Share Photo</string>
+    <string name="album_toolbar_delete_photo">Delete Photo</string>
+    <string name="album_toolbar_select_all">Select all</string>
+    <string name="album_toolbar_unselect_all">Unselect all</string>
+    <string name="album_toolbar_copy_to_album">copy to album</string>
+    <string name="album_toolbar_move_to_album">Move to album</string>
+    <string name="album_toolbar_set_as_private">Set as private</string>
+
+    <string name="album_photo_no_selected_toolbar_title">Select item</string>
+
+    <string name="album_other_menu_unarchive">Move back to album</string>
+    <string name="album_other_toolbar_title">Others</string>
+    <string name="album_other_toolbar_select_albums_title">Select albums</string>
 
     <string name="album_all_images">All Images</string>
     <string name="album_all_videos">All Videos</string>

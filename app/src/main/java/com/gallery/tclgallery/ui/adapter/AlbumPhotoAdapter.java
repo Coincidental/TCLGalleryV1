@@ -87,6 +87,7 @@ public class AlbumPhotoAdapter extends BaseAdapter{
         }
         Glide.with(mContext)
                 .load("file://" + localMediaBeen.get(i).getLocal_path())
+                .asBitmap()
                 .thumbnail(0.1f)
                 .into(holder.photo);
         return view;

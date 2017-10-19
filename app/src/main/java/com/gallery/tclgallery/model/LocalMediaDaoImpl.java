@@ -160,11 +160,6 @@ public class LocalMediaDaoImpl implements LocalMediaDao {
             }
         });
         scanTask.execute();
-        /** 计算分类到不同的相册中（形成关联表）
-         *      1. 生成相册表（）
-         *
-         *
-         */
     }
 
     /**

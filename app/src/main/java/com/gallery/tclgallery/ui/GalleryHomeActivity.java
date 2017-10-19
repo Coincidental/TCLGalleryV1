@@ -69,7 +69,7 @@ public class GalleryHomeActivity extends AppCompatActivity {
         albumGridv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (!albumFolderAdapter.isAlbumSelected()) {
+                if (!albumFolderAdapter.isAlbumSelected() && i != albumFolderAdapter.getCount()-1) {
                     if (showAlbums.size() != 0) {
                         showAlbums.get(i).setChecked(true);
                         albumFolderAdapter.setAlbumSelected(true);
@@ -100,21 +100,31 @@ public class GalleryHomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (albumFolderAdapter.isAlbumSelected()){
-                    boolean isSelected = showAlbums.get(i).isChecked();
-                    showAlbums.get(i).setChecked(!isSelected);
-                    albumFolderAdapter.notifyDataSetChanged();
-                    checkAlbumFoldersNoChecked();
-                    if (folderNoChecked){
-                        toolbar.setTitle("");
-                        invalidateOptionsMenu();
-                    } else {
-                        toolbar.setTitle(folderCheckedCount+"");
-                        invalidateOptionsMenu();
+                    if (i != albumFolderAdapter.getCount()-1) {
+                        boolean isSelected = showAlbums.get(i).isChecked();
+                        showAlbums.get(i).setChecked(!isSelected);
+                        albumFolderAdapter.notifyDataSetChanged();
+                        checkAlbumFoldersNoChecked();
+                        if (folderNoChecked) {
+                            toolbar.setTitle("");
+                            invalidateOptionsMenu();
+                        } else {
+                            toolbar.setTitle(folderCheckedCount + "");
+                            invalidateOptionsMenu();
+                        }
                     }
                 } else {
-                    Intent intent = new Intent(GalleryHomeActivity.this,AlbumPhotoActivity.class);
-                    intent.putExtra("albumTag",showAlbums.get(i));
-                    startActivity(intent);
+                    if (i != albumFolderAdapter.getCount()-1) {
+                        // 点击显式相册
+                        Intent intent = new Intent(GalleryHomeActivity.this, AlbumPhotoActivity.class);
+                        intent.putExtra("albumTag", showAlbums.get(i));
+                        startActivity(intent);
+                    } else {
+                        // 点击Others相册
+                        Intent intent = new Intent(GalleryHomeActivity.this, AlbumOtherActivity.class);
+                        intent.putExtra("invisible_album",invisibleAlbums);
+                        startActivity(intent);
+                    }
                 }
             }
         });
