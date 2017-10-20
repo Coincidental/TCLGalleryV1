@@ -2,9 +2,7 @@ package com.gallery.tclgallery.utils;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.telecom.Call;
 
-import com.gallery.tclgallery.bean.AlbumFolder;
 import com.gallery.tclgallery.bean.LocalMediaBean;
 
 import java.util.ArrayList;

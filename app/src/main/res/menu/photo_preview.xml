@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_Slideshow"
+        android:title="Slideshow"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_Set_as"
+        android:title="Set as ..."
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_Details"
+        android:title="Details"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_Print"
+        android:title="Print"
+        app:showAsAction="never"
+        />
+
+</menu>

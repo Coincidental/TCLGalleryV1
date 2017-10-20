@@ -161,7 +161,7 @@ public class GalleryBaseActivity extends AppCompatActivity implements BottomNavi
         List<View> views = new ArrayList<>();
         Intent intent = new Intent();
 
-        intent.setClass(this, GalleryHomeActivity.class);
+        intent.setClass(this, GooglePhotoActivity.class);
         intent.putExtra("view_id",1);
         views.add(getView("Moments", intent));
 
@@ -169,7 +169,7 @@ public class GalleryBaseActivity extends AppCompatActivity implements BottomNavi
         intent.putExtra("view_id",2);
         views.add(getView("Albums", intent));
 
-        intent.setClass(this, MainActivity.class);
+        intent.setClass(this, LocalScanActivity.class);
         intent.putExtra("view_id",3);
         views.add(getView("Create", intent));
 

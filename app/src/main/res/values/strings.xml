@@ -77,4 +77,7 @@
     <string name="default_album_private">Private</string>
     <string name="default_album_others">Others</string>
 
+    <string name="selectall">Select All</string>
+    <string name="unselectall">UnSelect All</string>
+
 </resources>

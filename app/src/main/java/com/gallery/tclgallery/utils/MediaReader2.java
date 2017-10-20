@@ -4,12 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
-import android.text.TextUtils;
-import android.widget.ArrayAdapter;
 
-import com.gallery.tclgallery.R;
-import com.gallery.tclgallery.bean.AlbumFile;
-import com.gallery.tclgallery.bean.AlbumFolder;
 import com.gallery.tclgallery.bean.LocalMediaBean;
 
 import java.io.File;

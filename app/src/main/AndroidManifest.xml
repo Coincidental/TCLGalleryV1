@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".application.GooglePhotoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,9 +24,12 @@
         </activity>
         <activity android:name=".ui.GalleryHomeActivity" />
         <activity android:name=".ui.GalleryCreateActivity" />
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.LocalScanActivity" />
         <activity android:name=".ui.AlbumPhotoActivity" />
         <activity android:name=".ui.AlbumOtherActivity" />
+        <activity android:name=".ui.GooglePhotoActivity" />
+        <activity android:name=".ui.RolloutBaseActivity" />
+        <activity android:name=".ui.RolloutPreviewActivity" />
     </application>
 
 </manifest>

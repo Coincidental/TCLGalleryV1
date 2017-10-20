@@ -16,4 +16,10 @@
 
     <!--add -->
     <color name="toolbar_bg">#EEFFFFFF</color>
+
+    <color name="rollout_colorPrimary">#3F51B5</color>
+    <color name="rollout_colorPrimaryDark">#303F9F</color>
+    <color name="rollout_colorAccent">#FF4081</color>
+    <color name="rollout_preview_bg" >#191919</color>
+    <color name="rollout_trans" >@android:color/transparent</color>
 </resources>

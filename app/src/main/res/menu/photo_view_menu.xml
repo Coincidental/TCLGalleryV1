@@ -33,10 +33,10 @@
         android:title="@string/day_view"
         app:showAsAction="never" />
 
-    <item
+    <!--<item
         android:id="@+id/other_view"
         android:title="@string/other_view"
-        app:showAsAction="never" />
+        app:showAsAction="never" />-->
     <item
         android:id="@+id/delete"
         android:title="@string/delete"
@@ -49,5 +49,9 @@
         android:id="@+id/camera"
         android:title="@string/camera"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/selectall"
+        android:title="@string/selectall"
+        app:showAsAction="never"/>
 
 </menu>
